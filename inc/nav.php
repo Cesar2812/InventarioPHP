@@ -1,8 +1,8 @@
     <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
 
-            <a class="navbar-item" href="#">
-                <img src="./img/Box-removebg-preview.png" width="65" height="28">
+            <a class="navbar-item" href="index.php?view=home">
+                <img src="./img/Box-removebg-preview.png" width="70" heigth="28">
             </a> 
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
