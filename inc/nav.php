@@ -23,13 +23,13 @@
                 </a>
 
                 <div class="navbar-dropdown">
-                    <a class="navbar-item">
+                    <a class="navbar-item" href="index.php?view=user_new">
                         Nuevo
                     </a>
-                    <a class="navbar-item">
+                    <a class="navbar-item" href="index.php?view=user_list">
                         Lista
                     </a>
-                    <a class="navbar-item">
+                    <a class="navbar-item" href="index.php?view=user_search">
                         Buscar
                     </a>
                 </div>

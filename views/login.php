@@ -6,7 +6,7 @@
         <div class="field">
             <label class="label">Usuario</label>
             <div class="control">
-                <input class="input" type="text" name="login_user">
+                <input class="input" type="text" name="login_user" required>
             </div>
         </div>
 
