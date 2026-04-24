@@ -1,19 +1,21 @@
 <?php
-    require "./inc/session_start.php";
+    require "./inc/session_start.php";//incia sesion al entrar al sistema importando el session start
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
     <?php
         include_once "./inc/head.php";
     ?>
+    
 </head>
 <body>
     <?php
-        //si el get de la vista no esta definido el router carga el login por defult osea cuando entre al sistema
+        //si el get de la vista no esta definido, el router carga el login por defult osea cuando entre al sistema
         if(!isset($_GET['view'])|| $_GET['view']=="" ){
             $_GET['view']="login";
-        }
+        } 
         if(is_file("./views/".$_GET['view'].".php")&&  $_GET['view']!="login" && $_GET['view']!="404" ){
             include_once "./inc/nav.php";
             include_once "./views/".$_GET['view'].".php";
