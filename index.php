@@ -1,6 +1,7 @@
 <?php
     require "./inc/session_start.php";//incia sesion al entrar al sistema importando el session start
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,8 +9,8 @@
     <?php
         include_once "./inc/head.php";
     ?>
-    
 </head>
+
 <body>
     <?php
         //si el get de la vista no esta definido, el router carga el login por defult osea cuando entre al sistema 
