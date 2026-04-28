@@ -119,7 +119,7 @@
         $passEncripted=password_hash($pass,PASSWORD_BCRYPT,["cost"=>10]);
     }
 
-    //GUARDANDO DATOS EN BASE DE DATOS
+    //GUARDANDO DATOS EN BASE DE DATOS USANDO MARCADORES
     $conection=Conection();
     $responseBD=$conection->prepare("INSERT INTO users(nameUser,lastnameUser,loginName,pass,email) VALUES(
                             :name,:lastName,:user,:passEncripted,:email)");
