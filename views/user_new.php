@@ -2,6 +2,7 @@
         <h1 class="title has-text-centered">GESTION DE USUARIOS</h1>
         <h2 class="subtitle has-text-centered">Nuevo usuario</h2>
     </div>
+
     <div class="container pb-6 pt-6">
 
         <div class="form-rest mb-6 mt-6">
@@ -33,7 +34,7 @@
                 <div class="column">
                     <div class="control">
                         <label>Email</label>
-                        <input class="input" type="email" name="email" maxlength="70" >
+                        <input class="input" type="email" name="email" maxlength="70" required>
                     </div>
                 </div>
             </div>
@@ -55,7 +56,4 @@
                 <button type="submit" class="button is-link">Guardar</button>
             </p>
         </form>
-    </div>
-
-
-    
+    </div> 

@@ -1,5 +1,5 @@
 <?php
-    //funciones que se van a utilizar en todo el sistema
+    //funciones que se van a utilizar en todo el sistema este archivo php las contiene
 
     //coneccion a la base de datos
     function Conection(){
