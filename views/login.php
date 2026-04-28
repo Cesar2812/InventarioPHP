@@ -26,7 +26,6 @@
             if(isset($_POST['login_user'])&& isset($_POST['login_pass'])){
                 include_once "./php/main.php";
                 include_once "./php/start_session.php";
-
             }
         ?>
     </form>

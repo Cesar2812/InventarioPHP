@@ -12,11 +12,17 @@
 </head>
 <body>
     <?php
-        //si el get de la vista no esta definido, el router carga el login por defult osea cuando entre al sistema
+        //si el get de la vista no esta definido, el router carga el login por defult osea cuando entre al sistema 
         if(!isset($_GET['view'])|| $_GET['view']=="" ){
             $_GET['view']="login";
         } 
+
         if(is_file("./views/".$_GET['view'].".php")&&  $_GET['view']!="login" && $_GET['view']!="404" ){
+            //cerrie de sesion forzado si no se ha logueado el usuario
+            if(!isset($_SESSION['id'])||$_SESSION['id']==""){
+                include_once "./views/logout.php";
+                exit();
+            }
             include_once "./inc/nav.php";
             include_once "./views/".$_GET['view'].".php";
             echo "<br><br>";

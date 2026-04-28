@@ -35,13 +35,11 @@
         exit();
     } 
 
-
     $conection=Conection();
     $responseDB=$conection->query("SELECT * FROM users WHERE loginName='$user'");
     if($responseDB->rowCount()==1){
         $data=$responseDB->fetch();//realizando un array de datos del usuario encontrado
-
-        if($data['loginName']==$user && password_verify($pass,$data['pass'])){
+        if(password_verify($pass,$data['pass'])){
 
             $_SESSION['id']=$data['id'];
             $_SESSION['Name']=$data['nameUser'];
@@ -56,12 +54,11 @@
             }else{
                 header("Location: index.php?view=home");
             }
-
         }else{
             echo '
                 <div class="notification is-danger">
                     <strong>¡Ocurrio un error inesperado!</strong><br>
-                    Usuario o claves incorrectos
+                        Clave incorrecta
                 </div>
             ';
         }
@@ -70,7 +67,7 @@
         echo '
             <div class="notification is-danger">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
-                Usuario o claves incorrectos
+                Usuario incorrecto
             </div>
         ';
     }
