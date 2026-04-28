@@ -78,9 +78,11 @@
                 <a class="button is-primary is-rounded">
                     <strong>Ver Perfil</strong>
                 </a>
-                <a class="button is-danger is-rounded">
+
+                <a href="index.php?view=logout" class="button is-danger is-rounded">
                     Salir
                 </a>
+
                 </div>
             </div>
         </div>
