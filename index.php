@@ -7,8 +7,9 @@
 <head>
 
     <?php
-        include_once "./inc/head.php";
+        include_once "./inc/head.php";//cabecera del diseno 
     ?>
+
 </head>
 
 <body>
@@ -20,8 +21,9 @@
 
         if(is_file("./views/".$_GET['view'].".php")&&  $_GET['view']!="login" && $_GET['view']!="404" ){
             //cerrie de sesion forzado si no se ha logueado el usuario
+            //si la variable de sesion no esta definida
             if(!isset($_SESSION['id'])||$_SESSION['id']==""){
-                include_once "./views/logout.php";
+                include_once "./views/login.php";
                 exit();
             }
             include_once "./inc/nav.php";
