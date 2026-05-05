@@ -37,6 +37,7 @@
 
     $conection=Conection();
     $responseDB=$conection->query("SELECT * FROM users WHERE loginName='$user'");
+    //filas afectadas a nivel de gestor
     if($responseDB->rowCount()==1){
         $data=$responseDB->fetch();//realizando un array de datos del usuario encontrado
         if(password_verify($pass,$data['pass'])){
@@ -71,5 +72,5 @@
             </div>
         ';
     }
-    $conection=null;
+    $conection=null;//se cierra la conexion a la base de datos
 ?>

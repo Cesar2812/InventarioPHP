@@ -1,7 +1,7 @@
 <?php
     require_once "main.php"; 
 
-    //almacendo datos
+    //limpiando datos
     $name=ClearData($_POST['user_name']);
     $lastName=ClearData($_POST['user_last']);
     $user=ClearData($_POST['user']);
@@ -121,7 +121,7 @@
 
     //GUARDANDO DATOS EN BASE DE DATOS USANDO MARCADORES
     $conection=Conection();
-    $responseBD=$conection->prepare("INSERT INTO users(nameUser,lastnameUser,loginName,pass,email) VALUES(
+    $requestBD=$conection->prepare("INSERT INTO users(nameUser,lastnameUser,loginName,pass,email) VALUES(
                             :name,:lastName,:user,:passEncripted,:email)");
     $markers=[
         ":name"=>$name,
@@ -130,8 +130,8 @@
         ":passEncripted"=>$passEncripted,
         ":email"=>$email
     ];
-    $responseBD->execute($markers);
-    if($responseBD->rowCount()==1){
+    $requestBD->execute($markers);
+    if($requestBD->rowCount()==1){
             echo '
                 <div class="notification is-primary">
                     <strong>¡Registro Exitoso!</strong><br>
