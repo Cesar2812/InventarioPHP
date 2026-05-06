@@ -4,7 +4,7 @@
     //verificando el usuario en la base de datos
     $checkUser=Conection();
     
-    $requestDataBase=$checkUser->query("SELECT id FROM users WHERE id='$userDelete'");  
+    $requestDataBase=$checkUser->query("SELECT id FROM users WHERE id='$userDelete'");   
 
 
 
