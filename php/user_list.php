@@ -9,7 +9,7 @@
         $query_total="SELECT COUNT(id) FROM users  WHERE (( id!='".$_SESSION['id']."') AND (nameUser LIKE '%$search%' OR lastnameUser LIKE '%$search%' OR loginName LIKE '%$search%' OR email LIKE '%$search%' ))";
 
     }else{
-        $query="SELECT * FROM users  WHERE id!='".$_SESSION['id']."' ORDER BY nameUser ASC LIMIT $start,$registers "; 
+        $query="SELECT * FROM users  WHERE id!='".$_SESSION['id']."' ORDER BY nameUser ASC LIMIT $start,$registers"; 
 
         $query_total="SELECT COUNT(id) FROM users  WHERE id!='".$_SESSION['id']."'";
     } 
