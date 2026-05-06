@@ -146,5 +146,5 @@
                 </div>
             ';
     }
-    $conection=null;
+    $conection=null;//cierra la conexion
 ?>

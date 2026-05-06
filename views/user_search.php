@@ -2,6 +2,7 @@
 
     <h1 class="title has-text-centered">USUARIOS</h1>
     <h2 class="subtitle has-text-centered">BUSCAR USUARIO</h2>
+    
 </div>
 
 <div class="container pb-6 pt-6">
@@ -17,6 +18,7 @@
     ?>
     <div class="columns">
         <div class="column">
+
             <form action="" method="POST" autocomplete="off" >
                 <input type="hidden" name="modulo_buscador" value="user">   
                 <div class="field is-grouped">
@@ -28,6 +30,7 @@
                     </p>
                 </div>
             </form>
+            
         </div>
     </div>
     <?php
@@ -45,6 +48,10 @@
         </div>
     </div>
     <?php
+        //elimnar usuario
+        if(isset($_GET['user_id_del'])){
+            require_once "./php/user_delete.php";
+        }
         //si en el get la pagina no esta definida entonces se le asigna el valor de 1
         if(!isset($_GET['page'])){
             $pagina=1;

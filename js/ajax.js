@@ -8,7 +8,7 @@ const form_ajax = document.querySelectorAll(".FormAjax"); //todos los formulario
             let dataForm = new FormData(this); //toma la data del formulario 
             let method = this.getAttribute("method"); //toma el metodo del formulario
             let action = this.getAttribute("action"); //toma la accion del formulario
-
+                    
             let headers = new Headers();
 
             let config = {
@@ -25,7 +25,8 @@ const form_ajax = document.querySelectorAll(".FormAjax"); //todos los formulario
                 container.innerHTML=response;
             });
         }
-    }
+    } 
+
 
     form_ajax.forEach((form_ajax) => {
       form_ajax.addEventListener("submit", SentForm_Ajax); //escuchando el evento submit del formulario
