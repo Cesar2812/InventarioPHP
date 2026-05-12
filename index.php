@@ -26,7 +26,7 @@
 
                 include "./vistas/".$_GET['vista'].".php";
 
-                require_once "./inc/footer.php";
+                
 
                 include "./inc/script.php";
 
@@ -37,6 +37,7 @@
                     include "./vistas/404.php";
                 }
             }
+            require_once "./inc/footer.php";
         ?>
         
     </body>
