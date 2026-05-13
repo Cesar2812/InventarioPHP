@@ -71,7 +71,7 @@
     if($email!=""){
         if(filter_var($email, FILTER_VALIDATE_EMAIL)){
             $check_email=conexion();
-            $check_email=$check_email->query("SELECT usuario_email FROM usuario WHERE usuario_email='$email'");
+            $check_email=$check_email->query("SELECT email FROM users WHERE email='$email'");
             if($check_email->rowCount()>0){
                 echo '
                     <div class="notification is-danger is-light">
@@ -96,7 +96,7 @@
 
     /*== Verificando usuario ==*/
     $check_usuario=conexion();
-    $check_usuario=$check_usuario->query("SELECT usuario_usuario FROM usuario WHERE usuario_usuario='$usuario'");
+    $check_usuario=$check_usuario->query("SELECT loginName FROM users WHERE loginName='$usuario'");
     if($check_usuario->rowCount()>0){
         echo '
             <div class="notification is-danger is-light">
@@ -125,7 +125,7 @@
 
     /*== Guardando datos ==*/
     $guardar_usuario=conexion();
-    $guardar_usuario=$guardar_usuario->prepare("INSERT INTO usuario(usuario_nombre,usuario_apellido,usuario_usuario,usuario_clave,usuario_email) VALUES(:nombre,:apellido,:usuario,:clave,:email)");
+    $guardar_usuario=$guardar_usuario->prepare("INSERT INTO users(nameUser,lastnameUser,loginName,pass,email) VALUES(:nombre,:apellido,:usuario,:clave,:email)");
 
     $marcadores=[
         ":nombre"=>$nombre,
@@ -139,7 +139,7 @@
 
     if($guardar_usuario->rowCount()==1){
         echo '
-            <div class="notification is-info is-light">
+            <div class="notification is-primary is-light">
                 <strong>¡USUARIO REGISTRADO!</strong><br>
                 El usuario se registro con exito
             </div>
