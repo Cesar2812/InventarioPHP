@@ -4,15 +4,15 @@
 
 	if(isset($busqueda) && $busqueda!=""){
 
-		$consulta_datos="SELECT * FROM categoria WHERE categoria_nombre LIKE '%$busqueda%' OR categoria_ubicacion LIKE '%$busqueda%' ORDER BY categoria_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT * FROM category WHERE nameCategory LIKE '%$busqueda%' OR ubication LIKE '%$busqueda%' ORDER BY nameCategory ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(categoria_id) FROM categoria WHERE categoria_nombre LIKE '%$busqueda%' OR categoria_ubicacion LIKE '%$busqueda%'";
+		$consulta_total="SELECT COUNT(id) FROM category WHERE nameCategory LIKE '%$busqueda%' OR ubication LIKE '%$busqueda%'";
 
 	}else{
 
-		$consulta_datos="SELECT * FROM categoria ORDER BY categoria_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT * FROM category ORDER BY nameCategory ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(categoria_id) FROM categoria";
+		$consulta_total="SELECT COUNT(id) FROM category";
 		
 	}
 
@@ -48,16 +48,16 @@
 			$tabla.='
 				<tr class="has-text-centered" >
 					<td>'.$contador.'</td>
-                    <td>'.$rows['categoria_nombre'].'</td>
-                    <td>'.substr($rows['categoria_ubicacion'],0,25).'</td>
+                    <td>'.$rows['nameCategory'].'</td>
+                    <td>'.substr($rows['ubication'],0,25).'</td>
                     <td>
-                        <a href="index.php?vista=product_category&category_id='.$rows['categoria_id'].'" class="button is-link is-rounded is-small">Ver productos</a>
+                        <a href="index.php?vista=product_category&category_id='.$rows['id'].'" class="button is-link is-rounded is-small">Ver productos</a>
                     </td>
                     <td>
-                        <a href="index.php?vista=category_update&category_id_up='.$rows['categoria_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
+                        <a href="index.php?vista=category_update&category_id_up='.$rows['id'].'" class="button is-success is-rounded is-small">Actualizar</a>
                     </td>
                     <td>
-                        <a href="'.$url.$pagina.'&category_id_del='.$rows['categoria_id'].'" class="button is-danger is-rounded is-small">Eliminar</a>
+                        <a href="'.$url.$pagina.'&category_id_del='.$rows['id'].'" class="button is-danger is-rounded is-small">Eliminar</a>
                     </td>
                 </tr>
             ';

@@ -7,7 +7,7 @@
 
     /*== Verificando categoria ==*/
 	$check_categoria=conexion();
-	$check_categoria=$check_categoria->query("SELECT * FROM categoria WHERE categoria_id='$id'");
+	$check_categoria=$check_categoria->query("SELECT * FROM category WHERE id='$id'");
 
     if($check_categoria->rowCount()<=0){
     	echo '
@@ -22,10 +22,10 @@
     }
     $check_categoria=null;
 
+
     /*== Almacenando datos ==*/
     $nombre=limpiar_cadena($_POST['categoria_nombre']);
     $ubicacion=limpiar_cadena($_POST['categoria_ubicacion']);
-
 
     /*== Verificando campos obligatorios ==*/
     if($nombre==""){
@@ -64,9 +64,9 @@
 
 
     /*== Verificando nombre ==*/
-    if($nombre!=$datos['categoria_nombre']){
+    if($nombre!=$datos['nameCategory']){
 	    $check_nombre=conexion();
-	    $check_nombre=$check_nombre->query("SELECT categoria_nombre FROM categoria WHERE categoria_nombre='$nombre'");
+	    $check_nombre=$check_nombre->query("SELECT nameCategory FROM category WHERE nameCategory='$nombre' and id!='$id'");
 	    if($check_nombre->rowCount()>0){
 	        echo '
 	            <div class="notification is-danger is-light">
@@ -82,7 +82,7 @@
 
     /*== Actualizar datos ==*/
     $actualizar_categoria=conexion();
-    $actualizar_categoria=$actualizar_categoria->prepare("UPDATE categoria SET categoria_nombre=:nombre,categoria_ubicacion=:ubicacion WHERE categoria_id=:id");
+    $actualizar_categoria=$actualizar_categoria->prepare("UPDATE category SET nameCategory=:nombre,ubication=:ubicacion WHERE id=:id");
 
     $marcadores=[
         ":nombre"=>$nombre,
@@ -92,7 +92,7 @@
 
     if($actualizar_categoria->execute($marcadores)){
         echo '
-            <div class="notification is-info is-light">
+            <div class="notification is-primary is-light">
                 <strong>¡CATEGORIA ACTUALIZADA!</strong><br>
                 La categoría se actualizo con exito
             </div>

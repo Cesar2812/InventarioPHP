@@ -1,6 +1,6 @@
 <div class="container is-fluid mb-6">
-    <h1 class="title">Categorías</h1>
-    <h2 class="subtitle">Buscar categoría</h2>
+    <h1 class="title has-text-centered">CATEGORIAS</h1>
+    <h2 class="subtitle has-text-centered">BUSCAR CATEGORIA</h2>
 </div>
 
 <div class="container pb-6 pt-6">

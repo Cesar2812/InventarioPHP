@@ -44,12 +44,12 @@
 
     /*== Verificando nombre ==*/
     $check_nombre=conexion();
-    $check_nombre=$check_nombre->query("SELECT categoria_nombre FROM categoria WHERE categoria_nombre='$nombre'");
+    $check_nombre=$check_nombre->query("SELECT nameCategory FROM category WHERE nameCategory='$nombre'");
     if($check_nombre->rowCount()>0){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
-                El NOMBRE ingresado ya se encuentra registrado, por favor elija otro
+                El NOMBRE de la categoria ingresado ya se encuentra registrado, por favor elija otro
             </div>
         ';
         exit();
@@ -59,7 +59,7 @@
 
     /*== Guardando datos ==*/
     $guardar_categoria=conexion();
-    $guardar_categoria=$guardar_categoria->prepare("INSERT INTO categoria(categoria_nombre,categoria_ubicacion) VALUES(:nombre,:ubicacion)");
+    $guardar_categoria=$guardar_categoria->prepare("INSERT INTO category(nameCategory,ubication) VALUES(:nombre,:ubicacion)");
 
     $marcadores=[
         ":nombre"=>$nombre,
@@ -70,7 +70,7 @@
 
     if($guardar_categoria->rowCount()==1){
         echo '
-            <div class="notification is-info is-light">
+            <div class="notification is-primary is-light">
                 <strong>¡CATEGORIA REGISTRADA!</strong><br>
                 La categoría se registro con exito
             </div>
