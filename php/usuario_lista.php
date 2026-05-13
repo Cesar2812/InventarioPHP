@@ -4,16 +4,15 @@
 
 	if(isset($busqueda) && $busqueda!=""){
 
-		$consulta_datos="SELECT * FROM usuario WHERE ((usuario_id!='".$_SESSION['id']."') AND (usuario_nombre LIKE '%$busqueda%' OR usuario_apellido LIKE '%$busqueda%' OR usuario_usuario LIKE '%$busqueda%' OR usuario_email LIKE '%$busqueda%')) ORDER BY usuario_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT * FROM users WHERE ((id!='".$_SESSION['id']."') AND (nameUser LIKE '%$busqueda%' OR lastnameUser LIKE '%$busqueda%' OR loginName LIKE '%$busqueda%' OR email LIKE '%$busqueda%')) ORDER BY nameUser ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(usuario_id) FROM usuario WHERE ((usuario_id!='".$_SESSION['id']."') AND (usuario_nombre LIKE '%$busqueda%' OR usuario_apellido LIKE '%$busqueda%' OR usuario_usuario LIKE '%$busqueda%' OR usuario_email LIKE '%$busqueda%'))";
+		$consulta_total="SELECT COUNT(id) FROM users WHERE ((id!='".$_SESSION['id']."') AND (nameUser LIKE '%$busqueda%' OR lastnameUser LIKE '%$busqueda%' OR loginName LIKE '%$busqueda%' OR email LIKE '%$busqueda%'))";
 
 	}else{
 
-		$consulta_datos="SELECT * FROM usuario WHERE usuario_id!='".$_SESSION['id']."' ORDER BY usuario_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT * FROM users WHERE id!='".$_SESSION['id']."' ORDER BY nameUser ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(usuario_id) FROM usuario WHERE usuario_id!='".$_SESSION['id']."'";
-		
+		$consulta_total="SELECT COUNT(id) FROM users WHERE id!='".$_SESSION['id']."'";
 	}
 
 	$conexion=conexion();
@@ -49,15 +48,15 @@
 			$tabla.='
 				<tr class="has-text-centered" >
 					<td>'.$contador.'</td>
-                    <td>'.$rows['usuario_nombre'].'</td>
-                    <td>'.$rows['usuario_apellido'].'</td>
-                    <td>'.$rows['usuario_usuario'].'</td>
-                    <td>'.$rows['usuario_email'].'</td>
+                    <td>'.$rows['nameUser'].'</td>
+                    <td>'.$rows['lastnameUser'].'</td>
+                    <td>'.$rows['loginName'].'</td>
+                    <td>'.$rows['email'].'</td>
                     <td>
-                        <a href="index.php?vista=user_update&user_id_up='.$rows['usuario_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
+                        <a href="index.php?vista=user_update&user_id_up='.$rows['id'].'" class="button is-success is-rounded is-small">Actualizar</a>
                     </td>
                     <td>
-                        <a href="'.$url.$pagina.'&user_id_del='.$rows['usuario_id'].'" class="button is-danger is-rounded is-small">Eliminar</a>
+                        <a href="'.$url.$pagina.'&user_id_del='.$rows['id'].'" class="button is-danger is-rounded is-small">Eliminar</a>
                     </td>
                 </tr>
             ';
