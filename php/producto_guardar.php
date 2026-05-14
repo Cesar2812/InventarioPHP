@@ -68,7 +68,7 @@
 
     /*== Verificando codigo ==*/
     $check_codigo=conexion();
-    $check_codigo=$check_codigo->query("SELECT producto_codigo FROM producto WHERE producto_codigo='$codigo'");
+    $check_codigo=$check_codigo->query("SELECT barCode FROM product WHERE barCode='$codigo'");
     if($check_codigo->rowCount()>0){
         echo '
             <div class="notification is-danger is-light">
@@ -83,7 +83,7 @@
 
     /*== Verificando nombre ==*/
     $check_nombre=conexion();
-    $check_nombre=$check_nombre->query("SELECT producto_nombre FROM producto WHERE producto_nombre='$nombre'");
+    $check_nombre=$check_nombre->query("SELECT nameProduct FROM product WHERE nameProduct='$nombre'");
     if($check_nombre->rowCount()>0){
         echo '
             <div class="notification is-danger is-light">
@@ -98,7 +98,7 @@
 
     /*== Verificando categoria ==*/
     $check_categoria=conexion();
-    $check_categoria=$check_categoria->query("SELECT categoria_id FROM categoria WHERE categoria_id='$categoria'");
+    $check_categoria=$check_categoria->query("SELECT id FROM category WHERE id='$categoria'");
     if($check_categoria->rowCount()<=0){
         echo '
             <div class="notification is-danger is-light">
@@ -132,7 +132,7 @@
         }
 
 		/* Comprobando formato de las imagenes */
-		if(mime_content_type($_FILES['producto_foto']['tmp_name'])!="image/jpeg" && mime_content_type($_FILES['producto_foto']['tmp_name'])!="image/png"){
+		if(mime_content_type($_FILES['producto_foto']['tmp_name'])!="image/jpeg" && mime_content_type($_FILES['producto_foto']['tmp_name'])!="image/png"&&mime_content_type($_FILES['producto_foto']['tmp_name'])!="image/jpg"){
 			echo '
 	            <div class="notification is-danger is-light">
 	                <strong>¡Ocurrio un error inesperado!</strong><br>
@@ -192,15 +192,15 @@
 
 	/*== Guardando datos ==*/
     $guardar_producto=conexion();
-    $guardar_producto=$guardar_producto->prepare("INSERT INTO producto(producto_codigo,producto_nombre,producto_precio,producto_stock,producto_foto,categoria_id,usuario_id) VALUES(:codigo,:nombre,:precio,:stock,:foto,:categoria,:usuario)");
+    $guardar_producto=$guardar_producto->prepare("INSERT INTO product(photo,barCode,nameProduct,price,stock,idCategory,userIdregistration) VALUES(:foto,:codigo,:nombre,:precio,:stock,:categoria,:usuario)");
 
     $marcadores=[
-        ":codigo"=>$codigo,
-        ":nombre"=>$nombre,
-        ":precio"=>$precio,
-        ":stock"=>$stock,
-        ":foto"=>$foto,
-        ":categoria"=>$categoria,
+        "foto"=>$foto,
+        "codigo"=>$codigo,
+        "nombre"=>$nombre,
+        "precio"=>$precio,
+        "stock"=>$stock,
+        "categoria"=>$categoria,
         ":usuario"=>$_SESSION['id']
     ];
 
@@ -208,7 +208,7 @@
 
     if($guardar_producto->rowCount()==1){
         echo '
-            <div class="notification is-info is-light">
+            <div class="notification is-primary is-light">
                 <strong>¡PRODUCTO REGISTRADO!</strong><br>
                 El producto se registro con exito
             </div>

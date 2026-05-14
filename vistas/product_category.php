@@ -1,6 +1,6 @@
 <div class="container is-fluid mb-6">
-    <h1 class="title">Productos</h1>
-    <h2 class="subtitle">Lista de productos por categoría</h2>
+    <h1 class="title has-text-centered">PRUDUCTOS</h1>
+    <h2 class="subtitle has-text-centered">LISTA DE PRODUCTOS POR CATEGORIA</h2>
 </div>
 
 <div class="container pb-6 pt-6">
@@ -12,11 +12,11 @@
             <h2 class="title has-text-centered">Categorías</h2>
             <?php
                 $categorias=conexion();
-                $categorias=$categorias->query("SELECT * FROM categoria");
+                $categorias=$categorias->query("SELECT * FROM category");
                 if($categorias->rowCount()>0){
                     $categorias=$categorias->fetchAll();
                     foreach($categorias as $row){
-                        echo '<a href="index.php?vista=product_category&category_id='.$row['categoria_id'].'" class="button is-link is-inverted is-fullwidth">'.$row['categoria_nombre'].'</a>';
+                        echo '<a href="index.php?vista=product_category&category_id='.$row['id'].'" class="button is-link is-inverted is-fullwidth">'.$row['nameCategory'].'</a>';
                     }
                 }else{
                     echo '<p class="has-text-centered" >No hay categorías registradas</p>';
@@ -30,15 +30,15 @@
 
                 /*== Verificando categoria ==*/
                 $check_categoria=conexion();
-                $check_categoria=$check_categoria->query("SELECT * FROM categoria WHERE categoria_id='$categoria_id'");
+                $check_categoria=$check_categoria->query("SELECT * FROM category WHERE id='$categoria_id'");
 
                 if($check_categoria->rowCount()>0){
 
                     $check_categoria=$check_categoria->fetch();
 
                     echo '
-                        <h2 class="title has-text-centered">'.$check_categoria['categoria_nombre'].'</h2>
-                        <p class="has-text-centered pb-6" >'.$check_categoria['categoria_ubicacion'].'</p>
+                        <h2 class="title has-text-centered">'.$check_categoria['nameCategory'].'</h2>
+                        <p class="has-text-centered pb-6" >'.$check_categoria['ubication'].'</p>
                     ';
 
                     require_once "./php/main.php";

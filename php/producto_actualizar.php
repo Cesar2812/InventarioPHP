@@ -1,5 +1,6 @@
 <?php
 	require_once "main.php";
+    require_once "../inc/session_start.php"; 
 
 	/*== Almacenando id ==*/
     $id=limpiar_cadena($_POST['producto_id']);
@@ -7,7 +8,7 @@
 
     /*== Verificando producto ==*/
 	$check_producto=conexion();
-	$check_producto=$check_producto->query("SELECT * FROM producto WHERE producto_id='$id'");
+	$check_producto=$check_producto->query("SELECT * FROM product WHERE id='$id'");
 
     if($check_producto->rowCount()<=0){
     	echo '
@@ -87,9 +88,9 @@
 
 
     /*== Verificando codigo ==*/
-    if($codigo!=$datos['producto_codigo']){
+    if($codigo!=$datos['barCode']){
 	    $check_codigo=conexion();
-	    $check_codigo=$check_codigo->query("SELECT producto_codigo FROM producto WHERE producto_codigo='$codigo'");
+	    $check_codigo=$check_codigo->query("SELECT barCode FROM product WHERE barCode='$codigo' and id!='$id'");
 	    if($check_codigo->rowCount()>0){
 	        echo '
 	            <div class="notification is-danger is-light">
@@ -104,9 +105,9 @@
 
 
     /*== Verificando nombre ==*/
-    if($nombre!=$datos['producto_nombre']){
+    if($nombre!=$datos['nameProduct']){
 	    $check_nombre=conexion();
-	    $check_nombre=$check_nombre->query("SELECT producto_nombre FROM producto WHERE producto_nombre='$nombre'");
+	    $check_nombre=$check_nombre->query("SELECT nameProduct FROM product WHERE nameProduct='$nombre' and id!='$id'");
 	    if($check_nombre->rowCount()>0){
 	        echo '
 	            <div class="notification is-danger is-light">
@@ -121,9 +122,9 @@
 
 
     /*== Verificando categoria ==*/
-    if($categoria!=$datos['categoria_id']){
+    if($categoria!=$datos['idCategory']){
 	    $check_categoria=conexion();
-	    $check_categoria=$check_categoria->query("SELECT categoria_id FROM categoria WHERE categoria_id='$categoria'");
+	    $check_categoria=$check_categoria->query("SELECT id FROM category WHERE id='$categoria'");
 	    if($check_categoria->rowCount()<=0){
 	        echo '
 	            <div class="notification is-danger is-light">
@@ -139,7 +140,7 @@
 
     /*== Actualizando datos ==*/
     $actualizar_producto=conexion();
-    $actualizar_producto=$actualizar_producto->prepare("UPDATE producto SET producto_codigo=:codigo,producto_nombre=:nombre,producto_precio=:precio,producto_stock=:stock,categoria_id=:categoria WHERE producto_id=:id");
+    $actualizar_producto=$actualizar_producto->prepare("UPDATE product SET barCode=:codigo,nameProduct=:nombre,price=:precio,stock=:stock,idCategory=:categoria,userIdupdate=:userId WHERE id=:id");
 
     $marcadores=[
         ":codigo"=>$codigo,
@@ -147,13 +148,15 @@
         ":precio"=>$precio,
         ":stock"=>$stock,
         ":categoria"=>$categoria,
-        ":id"=>$id
+        ":id"=>$id,
+        ":userId"=>$_SESSION['id']
+
     ];
 
 
     if($actualizar_producto->execute($marcadores)){
         echo '
-            <div class="notification is-info is-light">
+            <div class="notification is-primary is-light">
                 <strong>¡PRODUCTO ACTUALIZADO!</strong><br>
                 El producto se actualizo con exito
             </div>

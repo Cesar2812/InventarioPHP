@@ -1,6 +1,6 @@
 <div class="container is-fluid mb-6">
-	<h1 class="title">Productos</h1>
-	<h2 class="subtitle">Buscar producto</h2>
+	<h1 class="title has-text-centered">PRODUCTOS</h1>
+	<h2 class="subtitle has-text-centered">BUSCAR PRODUCTO</h2>
 </div>
 
 <div class="container pb-6 pt-6">
