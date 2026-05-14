@@ -1,6 +1,6 @@
 <div class="container is-fluid mb-6">
-	<h1 class="title">Productos</h1>
-	<h2 class="subtitle">Actualizar producto</h2>
+	<h1 class="title has-text-centered">PRODUCTOS</h1>
+	<h2 class="subtitle has-text-centered">ACTUALIZAR PRODUCTO</h2>
 </div>
 
 <div class="container pb-6 pt-6">
@@ -14,7 +14,7 @@
 
 		/*== Verificando producto ==*/
     	$check_producto=conexion();
-    	$check_producto=$check_producto->query("SELECT * FROM producto WHERE producto_id='$id'");
+    	$check_producto=$check_producto->query("SELECT * FROM product WHERE id='$id'");
 
         if($check_producto->rowCount()>0){
         	$datos=$check_producto->fetch();
@@ -22,53 +22,61 @@
 
 	<div class="form-rest mb-6 mt-6"></div>
 	
-	<h2 class="title has-text-centered"><?php echo $datos['producto_nombre']; ?></h2>
+	<h2 class="title has-text-centered"><?php echo $datos['nameProduct']; ?></h2>
 
 	<form action="./php/producto_actualizar.php" method="POST" class="FormularioAjax" autocomplete="off" >
 
-		<input type="hidden" name="producto_id" value="<?php echo $datos['producto_id']; ?>" required >
+		<input type="hidden" name="producto_id" value="<?php echo $datos['id']; ?>" required >
 
 		<div class="columns">
+
 		  	<div class="column">
 		    	<div class="control">
 					<label>Código de barra</label>
-				  	<input class="input" type="text" name="producto_codigo" pattern="[a-zA-Z0-9- ]{1,70}" maxlength="70" required value="<?php echo $datos['producto_codigo']; ?>" >
+				  	<input class="input" type="text" name="producto_codigo" pattern="[a-zA-Z0-9- ]{1,70}" maxlength="70" required value="<?php echo $datos['barCode']; ?>" >
 				</div>
 		  	</div>
+
 		  	<div class="column">
 		    	<div class="control">
 					<label>Nombre</label>
-				  	<input class="input" type="text" name="producto_nombre" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,$#\-\/ ]{1,70}" maxlength="70" required value="<?php echo $datos['producto_nombre']; ?>" >
+				  	<input class="input" type="text" name="producto_nombre" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,$#\-\/ ]{1,70}" maxlength="70" required value="<?php echo $datos['nameProduct']; ?>" >
 				</div>
 		  	</div>
+
 		</div>
+
 		<div class="columns">
+
 		  	<div class="column">
 		    	<div class="control">
 					<label>Precio</label>
-				  	<input class="input" type="text" name="producto_precio" pattern="[0-9.]{1,25}" maxlength="25" required value="<?php echo $datos['producto_precio']; ?>" >
+				  	<input class="input" type="text" name="producto_precio" pattern="[0-9.]{1,25}" maxlength="25" required value="<?php echo $datos['price']; ?>" >
 				</div>
 		  	</div>
+
 		  	<div class="column">
 		    	<div class="control">
 					<label>Stock</label>
-				  	<input class="input" type="text" name="producto_stock" pattern="[0-9]{1,25}" maxlength="25" required value="<?php echo $datos['producto_stock']; ?>" >
+				  	<input class="input" type="text" name="producto_stock" pattern="[0-9]{1,25}" maxlength="25" required value="<?php echo $datos['stock']; ?>" >
 				</div>
 		  	</div>
+
 		  	<div class="column">
+
 				<label>Categoría</label><br>
 		    	<div class="select is-rounded">
 				  	<select name="producto_categoria" >
 				    	<?php
     						$categorias=conexion();
-    						$categorias=$categorias->query("SELECT * FROM categoria");
+    						$categorias=$categorias->query("SELECT * FROM category");
     						if($categorias->rowCount()>0){
     							$categorias=$categorias->fetchAll();
     							foreach($categorias as $row){
-    								if($datos['categoria_id']==$row['categoria_id']){
-    									echo '<option value="'.$row['categoria_id'].'" selected="" >'.$row['categoria_nombre'].' (Actual)</option>';
+    								if($datos['idCategory']==$row['id']){
+    									echo '<option value="'.$row['id'].'" selected="" >'.$row['nameCategory'].' (Actual)</option>';
     								}else{
-    									echo '<option value="'.$row['categoria_id'].'" >'.$row['categoria_nombre'].'</option>';
+    									echo '<option value="'.$row['id'].'" >'.$row['nameCategory'].'</option>';
     								}
 				    			}
 				   			}
@@ -76,11 +84,14 @@
 				    	?>
 				  	</select>
 				</div>
+
 		  	</div>
 		</div>
+
 		<p class="has-text-centered">
 			<button type="submit" class="button is-success is-rounded">Actualizar</button>
 		</p>
+		
 	</form>
 	<?php 
 		}else{
