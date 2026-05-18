@@ -9,8 +9,9 @@
     <body>
         <?php
 
+            //si el get de la vista no existe al iniciar el servidor, se le asigna el valor del login 
             if(!isset($_GET['vista']) || $_GET['vista']==""){
-                $_GET['vista']="login";
+                $_GET['vista']="login";// se crea el get con el valor o nombre de la vista a cargar login
             }
 
 

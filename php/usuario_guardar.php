@@ -2,7 +2,7 @@
     
     require_once "main.php";
 
-    /*== Almacenando datos ==*/
+    /*== Almacenando datos que vienen del formulario ==*/
     $nombre=limpiar_cadena($_POST['usuario_nombre']);
     $apellido=limpiar_cadena($_POST['usuario_apellido']);
 
@@ -94,7 +94,7 @@
     }
 
 
-    /*== Verificando usuario ==*/
+    /*== Verificando usuario ==*/ 
     $check_usuario=conexion();
     $check_usuario=$check_usuario->query("SELECT loginName FROM users WHERE loginName='$usuario'");
     if($check_usuario->rowCount()>0){
